@@ -8,7 +8,7 @@ const LoginLanding = () => {
       to: "/login/admin",
       title: "Admin Portal",
       description:
-        "Manage employees, departments, payroll, and system configure",
+        "Manage employees, departments, payroll, and system configuration",
       icon: ShieldIcon,
     },
     {
@@ -32,7 +32,7 @@ const LoginLanding = () => {
             </h2>
 
             <p className="text-slate-500">
-              Select your portal to securly access the system
+              Select your portal to securely access the system
             </p>
           </div>
 

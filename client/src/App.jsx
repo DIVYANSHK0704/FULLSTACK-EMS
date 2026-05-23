@@ -22,7 +22,7 @@ const App = () => {
 
         <Route path="/login/admin" element={<LoginForm role="admin" title="Admin Portal" subtitle="Sign in to manage the organization"/>} />
 
-        <Route path="/login/employee" element={<LoginForm role="employee" title="Employee Portal" subtitle="Sign in to manage the organization"/>} />
+        <Route path="/login/employee" element={<LoginForm role="employee" title="Employee Portal" subtitle="Sign in to access your profile and records"/>} />
 
         <Route element={<Layout />}>
 
@@ -36,7 +36,7 @@ const App = () => {
 
         <Route path="/print/payslips/:id" element={<PrintPaySlip />} />
 
-        <Route path="*" element={<Navigate to="dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
 
       </Routes>
     </>
