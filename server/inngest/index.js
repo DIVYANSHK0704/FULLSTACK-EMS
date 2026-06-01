@@ -125,7 +125,7 @@ const leaveApplicationReminder = inngest.createFunction(
 
 //auto send email to admin, if he does not action on leave application
 const attendanceReminderCron = inngest.createFunction(
-  { id: "attendance-reminder-Cron", triggers: [{ cron: "0 0 6 * * *" }] },
+  { id: "attendance-reminder-Cron", triggers: [{ cron: "TZ=Asia/Kolkata 30 11 * * *" }] },
   async ({ step }) => {
     // Step 1: Get today's date range (IST)
     const today = await step.run("get-today-date", () => {
