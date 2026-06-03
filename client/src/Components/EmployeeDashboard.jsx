@@ -8,8 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import { dummyEmployeeDashboardData } from "../assets/assets";
 
-const EmployeeDashboard = () => {
-  const data = dummyEmployeeDashboardData;
+const EmployeeDashboard = ({data}) => { 
 
   const emp = data?.employee;
 
@@ -52,6 +51,10 @@ const EmployeeDashboard = () => {
         </p>
       </div>
 
+      <div>
+        
+      </div>
+
       {/* Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-8">
         {cards.map((card, index) => (
@@ -87,7 +90,7 @@ const EmployeeDashboard = () => {
           to="/attendance"
           className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors duration-200"
         >
-          Mark Attendance
+          Mark Your Attendance
           <ArrowRightIcon className="w-4 h-4" />
         </Link>
 

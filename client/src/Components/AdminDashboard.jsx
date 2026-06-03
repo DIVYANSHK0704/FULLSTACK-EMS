@@ -5,10 +5,9 @@ import {
   UsersIcon,
 } from "lucide-react";
 
-import { dummyAdminDashboardData } from "../assets/assets";
 
-const AdminDashboard = () => {
-  const data = dummyAdminDashboardData;
+
+const AdminDashboard = ({data}) => {
 
   const stats = [
     {
