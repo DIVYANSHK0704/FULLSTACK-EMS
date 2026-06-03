@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from "react"
-import {  dummyEmployeeData, DEPARTMENTS } from "../assets/assets"
 import { Plus, Search, X } from "lucide-react"
 import EmployeeCard from "../Components/EmployeeCard"
 import EmployeeForm from "../Components/EmployeeForm"
+import { DEPARTMENTS } from "../assets/assets";
+import api from "../api/axios"
 
 const Employees = () => {
   const [employees, setEmployees] = useState([])
@@ -13,12 +14,19 @@ const Employees = () => {
   const [showCreateModel, setShowCreateModel] = useState(false)
 
   const fetchEmployees = useCallback(async () => {
-    setLoading(true)
-    setEmployees(dummyEmployeeData.filter((emp) => (selectedDept ? emp.department ===selectedDept : emp)))
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000);
-  },[selectedDept])
+    try {
+      const url = selectedDept
+        ? `/employees?department=${selectedDept}`
+        : "/employees";
+
+      const res = await api.get(url);
+      setEmployees(res.data);
+    } catch (error) {
+      console.error("Failed to fetch employees");
+    } finally {
+      setLoading(false);
+    }
+  }, [selectedDept]);
 
   useEffect(() => {
     fetchEmployees();
@@ -27,7 +35,7 @@ const Employees = () => {
   const filtered = employees.filter((emp) => `${emp.firstName} ${emp.lastName} ${emp.position}`.toLowerCase().includes(search.toLowerCase()))
 
   return (
-    <div className="animate fade-in">
+    <div className="animate-fade-in">
          
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">

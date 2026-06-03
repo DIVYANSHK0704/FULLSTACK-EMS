@@ -4,9 +4,35 @@ import { useState } from "react";
 const ChangePasswordModal = ({ open, onClose }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
-
+  
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    setLoading(true);
+
+    setMessage({ type: "", text: "" });
+
+    const formData = new FormData(e.currentTarget);
+
+    const currentPassword = formData.get("currentPassword");
+
+    const newPassword = formData.get("newPassword");
+
+    try {
+      const { data } = await api.post("/auth/change-password", {
+        currentPassword,
+        newPassword,
+      });
+
+      if (!data.success) {
+        setMessage({type:"success", text:"password update"})
+        throw new Error(data.error || "Failed");
+      }
+
+      e.target.reset();
+    } catch (error) {
+      setMessage({ type: "error", text: error.message });
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!open) return null;
